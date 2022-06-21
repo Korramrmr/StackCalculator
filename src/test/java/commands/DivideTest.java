@@ -30,6 +30,7 @@ class DivideTest {
 
         Command commandDivide = factory.findNameCommand("/");
 
+
         assertThrows(CalculatorException.class, () -> commandDivide.calculate(null, contextTest));
     }
 

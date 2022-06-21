@@ -15,8 +15,8 @@ class DefineTest {
         CommandFactory factory = CommandFactory.getInstance();
         CalculatorContext ctx = new CalculatorContext();
         String[] args = {"Define", "a", "100"};
-        Command commandDefine = factory.findNameCommand("Define");
-        Command push = factory.findNameCommand("Push");
+        Command commandDefine = factory.findNameCommand("DEFINE");
+        Command push = factory.findNameCommand("PUSH");
         commandDefine.calculate(args, ctx);
         push.calculate(args, ctx);
         assertEquals(100, ctx.getStackNumbers().pop());

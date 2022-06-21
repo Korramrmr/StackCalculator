@@ -5,7 +5,10 @@ import calculator.CalculatorContext;
 import calculator.CalculatorException;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PrintTest {
 
@@ -20,5 +23,16 @@ class PrintTest {
 
         assertEquals(expectedResult, contextTest.getStackNumbers().getFirst());
     }
+
+    @Test
+    public void notEnoughArgs() {
+        CalculatorContext calculatorContext = new CalculatorContext();
+
+        Print commandPrint = new Print();
+
+        assertThrows(NoSuchElementException.class, () -> commandPrint.calculate(null, calculatorContext));
+
+    }
+
 
 }

@@ -6,11 +6,11 @@ import static constants.Constant.*;
 
 public final class CommandFileReader  {
 
-    public void executeFile(String inFileName) throws FileNotFoundException, CalculatorException {
+    public void executeFile(final String inFileName) throws FileNotFoundException, CalculatorException {
         final CalculatorContext calculatorContext = new CalculatorContext();
         if (inFileName != null) {
             final CommandFactory factory = CommandFactory.getInstance();
-            try(final Scanner scanner = new Scanner(new File(inFileName));) {
+            try(final Scanner scanner = new Scanner(new File(inFileName))) {
                 while (scanner.hasNextLine()) {
                     final String stringScanner = scanner.nextLine();
                     final String[] argsCommands = stringScanner.split(" ");
@@ -18,6 +18,7 @@ public final class CommandFileReader  {
                     if (command == null) {
                         System.out.println("Команда не найдена");
                     }
+                    assert command != null;
                     command.calculate(argsCommands, calculatorContext);
                 }
             }

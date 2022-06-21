@@ -9,8 +9,8 @@ import calculator.StackSize;
 public final class Pop implements Command {
     @Override
     @StackSize(valueStackSize = 1)
-    public void calculate(String[] args, CalculatorContext calculatorContext) throws CalculatorException {
-        Deque<Double> stackNumbers = calculatorContext.getStackNumbers();
+    public void calculate(final String[] args, final CalculatorContext calculatorContext) throws CalculatorException {
+        final Deque<Double> stackNumbers = calculatorContext.getStackNumbers();
         stackNumbers.pop();
     }
 }

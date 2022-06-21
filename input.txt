@@ -1,4 +1,25 @@
-define a 4
-add a
-sqrt
-print
+DEFINE a 5
+DEFINE b 13
+DEFINE c 20
+PUSH 5
+PUSH a
+*
+PUSH b
+PUSH 0
+-
+PUSH 6
+PUSH a
+*
+PUSH c
+*
+PUSH b
+PUSH b
+*
+-
+PRINT
+SQRT
+PUSH 0
+-
++
+/
+PRINT

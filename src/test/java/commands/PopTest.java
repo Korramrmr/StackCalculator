@@ -2,8 +2,6 @@ package commands;
 
 import calculator.CalculatorContext;
 import calculator.CalculatorException;
-import commands.Divide;
-import commands.Pop;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

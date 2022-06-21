@@ -18,7 +18,7 @@ public final class CommandConsoleParser {
                 if (EXIT.equalsIgnoreCase(stringScanner)) {
                     calculatorConsoleCheck = false;
                 } else {
-                    String[] commandsFromConsole = stringScanner.split(" ");
+                    final String[] commandsFromConsole = stringScanner.split(" ");
 
                   final Command command = factory.findNameCommand(commandsFromConsole[COMMAND_INDEX]);
                   command.calculate(commandsFromConsole, calculatorContext);
