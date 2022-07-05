@@ -7,7 +7,7 @@ import calculator.Command;
 
 public final class Comment implements Command {
     @Override
-    public void calculate(final String[] args, final CalculatorContext calculatorContext) throws CalculatorException {
+    public void calculate(final String[] args, final CalculatorContext context) throws CalculatorException {
         System.out.println("\t Все доступные команды:");
         System.out.println("\t\"PUSH\" - добавить число в стек");
         System.out.println("\t\"POP\" - удалить последний элемент из стека");

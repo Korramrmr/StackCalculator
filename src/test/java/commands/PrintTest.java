@@ -14,21 +14,21 @@ class PrintTest {
 
     @Test
     public void commandPrintWorkCorrect() throws CalculatorException {
-        CalculatorContext contextTest = new CalculatorContext();
-        contextTest.getStackNumbers().add(222.0);
+        final CalculatorContext contextTest = new CalculatorContext();
+        contextTest.getStack().add(222.0);
 
-        Print commandPrint = new Print();
+        final Print commandPrint = new Print();
         commandPrint.calculate(null, contextTest);
-        double expectedResult = 222.0;
+        final double expectedResult = 222.0;
 
-        assertEquals(expectedResult, contextTest.getStackNumbers().getFirst());
+        assertEquals(expectedResult, contextTest.getStack().getFirst());
     }
 
     @Test
     public void notEnoughArgs() {
-        CalculatorContext calculatorContext = new CalculatorContext();
+        final CalculatorContext calculatorContext = new CalculatorContext();
 
-        Print commandPrint = new Print();
+        final Print commandPrint = new Print();
 
         assertThrows(NoSuchElementException.class, () -> commandPrint.calculate(null, calculatorContext));
 

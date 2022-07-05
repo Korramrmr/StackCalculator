@@ -6,14 +6,16 @@ import calculator.CalculatorException;
 
 import java.util.Deque;
 
-import static constants.Constant.*;
 
 public final class Push implements Command {
+    private static final int ARG_INDEX_NUMBER = 1;
+
+
     @Override
-    public void calculate(final String[] args, final CalculatorContext calculatorContext) throws CalculatorException {
-        final Deque<Double> stackNumbers = calculatorContext.getStackNumbers();
-        if (calculatorContext.getCommandAndValue().containsKey(args[ARG_INDEX_NUMBER])) {
-            stackNumbers.push(calculatorContext.getCommandAndValue().get(args[ARG_INDEX_NUMBER]));
+    public void calculate(final String[] args, final CalculatorContext context) throws CalculatorException {
+        final Deque<Double> stackNumbers = context.getStack();
+        if (context.getCommandAndValue().containsKey(args[ARG_INDEX_NUMBER])) {
+            stackNumbers.push(context.getCommandAndValue().get(args[ARG_INDEX_NUMBER]));
         } else {
             try {
                 stackNumbers.push(Double.valueOf(args[ARG_INDEX_NUMBER]));

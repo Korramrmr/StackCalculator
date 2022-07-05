@@ -5,21 +5,18 @@ import main.Main;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
-import static constants.Constant.*;
 
 
 public final class CommandFactory {
 
-    private static final CommandFactory factory = new CommandFactory();
+    private static final String COMMAND_PATH = "/command.properties";
+    private static final Command COMMAND_NOT_FOUND = (args, calculatorContext) -> System.out.println("Команда не найдена. Введите \"#\" чтобы посмотреть доступные команды");
 
-    private final HashMap<String, Command> commandHashMap = new HashMap<>();
+    private final Map<String, Command> commandHashMap = new HashMap<>();
 
-    public static CommandFactory getInstance() {
-        return factory;
-    }
-
-    private CommandFactory()  {
+    public CommandFactory()  {
 
         try(final InputStream input = Main.class.getResourceAsStream(COMMAND_PATH)){
             final Properties commandProperties = new Properties();
@@ -27,14 +24,14 @@ public final class CommandFactory {
 
             for (String nameCommand: commandProperties.stringPropertyNames()){
                 final String commandClassName = commandProperties.getProperty(nameCommand);
-                Class<?> commandClass = Class.forName(commandClassName);
+                final Class<?> commandClass = Class.forName(commandClassName);
                 var executeCommand = (Command) Class.forName(commandClassName).getDeclaredConstructor().newInstance();
-                StackSize stackSize =  commandClass.getMethod("calculate", String[].class, CalculatorContext.class).getAnnotation(StackSize.class);
+                CommandRequirements stackSize =  commandClass.getMethod("calculate", String[].class, CalculatorContext.class).getAnnotation(CommandRequirements.class);
 
 
                 final Command command = (args, calculatorContext) -> {
-                    if (stackSize != null && stackSize.valueStackSize() > calculatorContext.getStackNumbers().size()){
-                     throw new CalculatorException("Данная команда ожидает количество элементов: " + stackSize.valueStackSize());
+                    if (stackSize != null && stackSize.desiredStackSize() > calculatorContext.getStack().size()){
+                     throw new CalculatorException("Данная команда ожидает количество элементов: " + stackSize.desiredStackSize());
                     }
                     executeCommand.calculate(args, calculatorContext);
                 };

@@ -12,14 +12,14 @@ class DefineTest {
 
     @Test
     public void commandDefineWorkCorrect() throws CalculatorException {
-        CommandFactory factory = CommandFactory.getInstance();
-        CalculatorContext ctx = new CalculatorContext();
-        String[] args = {"Define", "a", "100"};
-        Command commandDefine = factory.findNameCommand("DEFINE");
-        Command push = factory.findNameCommand("PUSH");
-        commandDefine.calculate(args, ctx);
-        push.calculate(args, ctx);
-        assertEquals(100, ctx.getStackNumbers().pop());
+        final CommandFactory factory = new CommandFactory();
+        final CalculatorContext context = new CalculatorContext();
+        final String[] args = {"Define", "a", "100"};
+        final Command commandDefine = factory.findNameCommand("DEFINE");
+        final Command push = factory.findNameCommand("PUSH");
+        commandDefine.calculate(args, context);
+        push.calculate(args, context);
+        assertEquals(100, context.getStack().pop());
     }
 
 }

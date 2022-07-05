@@ -14,7 +14,7 @@ public final class CalculatorException extends Exception{
         super(cause);
     }
 
-    public CalculatorException(final String warningMessage, final Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public CalculatorException(final String warningMessage, final Throwable cause, final boolean enableSuppression, final boolean writableStackTrace) {
         super(warningMessage, cause, enableSuppression, writableStackTrace);
     }
 

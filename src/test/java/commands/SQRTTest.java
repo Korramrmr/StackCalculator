@@ -11,31 +11,31 @@ import static org.junit.jupiter.api.Assertions.*;
 class SQRTTest {
     @Test
     public void commandSQRTWorkCorrect() throws CalculatorException {
-        CalculatorContext contextTest = new CalculatorContext();
-        contextTest.getStackNumbers().add(100.0);
+        final CalculatorContext contextTest = new CalculatorContext();
+        contextTest.getStack().add(100.0);
 
-        SQRT commandSQRT = new SQRT();
+        final SQRT commandSQRT = new SQRT();
         commandSQRT.calculate(null, contextTest);
-        double expectedResult = 10.0;
+        final double expectedResult = 10.0;
 
-        assertEquals(expectedResult, contextTest.getStackNumbers().pop());
+        assertEquals(expectedResult, contextTest.getStack().pop());
     }
 
     @Test
     public void commandSQRTThrowsCalculatorException() {
-        CalculatorContext contextTest = new CalculatorContext();
-        contextTest.getStackNumbers().add(-100.0);
-        SQRT commandSQRT = new SQRT();
+        final CalculatorContext contextTest = new CalculatorContext();
+        contextTest.getStack().add(-100.0);
+        final SQRT commandSQRT = new SQRT();
 
         assertThrows(CalculatorException.class, () -> commandSQRT.calculate(null, contextTest));
     }
 
     @Test
     public void commandSQRTIsEmpty(){
-        CommandFactory factory = CommandFactory.getInstance();
-        CalculatorContext contextTest = new CalculatorContext();
+        final CommandFactory factory = new CommandFactory();
+        final CalculatorContext contextTest = new CalculatorContext();
 
-        Command commandSQRT = factory.findNameCommand("SQRT");
+        final Command commandSQRT = factory.findNameCommand("SQRT");
 
         assertThrows(CalculatorException.class, () -> commandSQRT.calculate(null, contextTest));
     }

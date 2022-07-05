@@ -1,13 +1,16 @@
 package calculator;
 
 import java.util.Scanner;
-import static constants.Constant.*;
 
 public final class CommandConsoleParser {
+    private static final String WELCOME = "Введите необходимые параметры. Для завершения введите EXIT";
+    public static final String EXIT = "EXIT";
+    public static final int COMMAND_INDEX = 0;
+
 
     public void readConsole() throws CalculatorException {
         final CalculatorContext calculatorContext = new CalculatorContext();
-        final CommandFactory factory = CommandFactory.getInstance();
+        final CommandFactory factory = new CommandFactory();
 
         boolean calculatorConsoleCheck = true;
 

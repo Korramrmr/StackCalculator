@@ -12,23 +12,23 @@ class DivideTest {
 
     @Test
     public void commandDivideWorkCorrect() {
-        CalculatorContext contextTest = new CalculatorContext();
-        contextTest.getStackNumbers().add(222.0);
-        contextTest.getStackNumbers().add(2.0);
+        final CalculatorContext contextTest = new CalculatorContext();
+        contextTest.getStack().add(222.0);
+        contextTest.getStack().add(2.0);
 
-        Divide commandDivide = new Divide();
+        final Divide commandDivide = new Divide();
         commandDivide.calculate(null, contextTest);
         final double expectedResult = 111.0;
 
-        assertEquals(expectedResult, contextTest.getStackNumbers().pop());
+        assertEquals(expectedResult, contextTest.getStack().pop());
     }
 
     @Test
     public void commandDivideIsEmpty(){
-        CommandFactory factory = CommandFactory.getInstance();
-        CalculatorContext contextTest = new CalculatorContext();
+        final CommandFactory factory = new CommandFactory();
+        final CalculatorContext contextTest = new CalculatorContext();
 
-        Command commandDivide = factory.findNameCommand("/");
+        final Command commandDivide = factory.findNameCommand("/");
 
 
         assertThrows(CalculatorException.class, () -> commandDivide.calculate(null, contextTest));
@@ -36,11 +36,11 @@ class DivideTest {
 
     @Test
     public void inCommandDivideNotEnoughArgs(){
-        CommandFactory factory = CommandFactory.getInstance();
-        CalculatorContext contextTest = new CalculatorContext();
+        final CommandFactory factory = new CommandFactory();
+        final CalculatorContext contextTest = new CalculatorContext();
 
-        contextTest.getStackNumbers().add(100.0);
-        Command commandDivide = factory.findNameCommand("/");
+        contextTest.getStack().add(100.0);
+        final Command commandDivide = factory.findNameCommand("/");
 
         assertThrows(CalculatorException.class, () -> commandDivide.calculate(null, contextTest));
     }

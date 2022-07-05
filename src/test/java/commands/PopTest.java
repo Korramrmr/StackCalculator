@@ -9,15 +9,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class PopTest {
     @Test
     public void commandPopWorkCorrect() throws CalculatorException {
-        CalculatorContext contextTest = new CalculatorContext();
-        contextTest.getStackNumbers().add(222.0);
-        contextTest.getStackNumbers().add(333.0);
+        final CalculatorContext contextTest = new CalculatorContext();
+        contextTest.getStack().add(222.0);
+        contextTest.getStack().add(333.0);
 
-        Pop commandPop = new Pop();
+        final Pop commandPop = new Pop();
         commandPop.calculate(null, contextTest);
-        double expectedResult = 333.0;
+        final double expectedResult = 333.0;
 
-        assertEquals(expectedResult, contextTest.getStackNumbers().pop());
+        assertEquals(expectedResult, contextTest.getStack().pop());
     }
 
 }

@@ -10,15 +10,15 @@ class PushTest {
 
     @Test
     public void commandPushWorkCorrect() throws CalculatorException {
-        CalculatorContext contextTest = new CalculatorContext();
-        String[] testArrayCommand = {"push", "333.0"};
+        final CalculatorContext contextTest = new CalculatorContext();
+        final String[] testArrayCommand = {"push", "333.0"};
 
-        Push commandPush = new Push();
+        final Push commandPush = new Push();
         commandPush.calculate(testArrayCommand, contextTest);
 
-        double expectedResult = 333.0;
+        final double expectedResult = 333.0;
 
-        assertEquals(expectedResult, contextTest.getStackNumbers().getFirst());
+        assertEquals(expectedResult, contextTest.getStack().getFirst());
     }
 
 }

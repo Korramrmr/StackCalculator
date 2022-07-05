@@ -3,12 +3,12 @@ package main;
 import calculator.CalculatorException;
 import calculator.CommandFileReader;
 import calculator.CommandConsoleParser;
-import static constants.Constant.*;
-
 
 import java.io.FileNotFoundException;
 
 public final class Main {
+    private static final int MAX_INPUT_ARGS_INDEX = 1;
+    private static final int FILE_NAME_ARG_INDEX = 0;
 
     private Main() {
     }

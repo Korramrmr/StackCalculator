@@ -13,34 +13,34 @@ class SubTest {
     @Test
 
     public void commandAddWorkCorrect() {
-        CalculatorContext contextTest = new CalculatorContext();
-        contextTest.getStackNumbers().add(400.0);
-        contextTest.getStackNumbers().add(300.0);
+        final CalculatorContext contextTest = new CalculatorContext();
+        contextTest.getStack().add(400.0);
+        contextTest.getStack().add(300.0);
 
-        Sub commandSub = new Sub();
+        final Sub commandSub = new Sub();
         commandSub.calculate(null, contextTest);
-        double expectedResult = 100.0;
+        final double expectedResult = 100.0;
 
-        assertEquals(expectedResult, contextTest.getStackNumbers().pop());
+        assertEquals(expectedResult, contextTest.getStack().pop());
     }
 
     @Test
     public void commandSubIsEmpty(){
-        CommandFactory factory = CommandFactory.getInstance();
-        CalculatorContext contextTest = new CalculatorContext();
+        final CommandFactory factory = new CommandFactory();
+        final CalculatorContext contextTest = new CalculatorContext();
 
-        Command commandSub = factory.findNameCommand("-");
+        final Command commandSub = factory.findNameCommand("-");
 
         assertThrows(CalculatorException.class, () -> commandSub.calculate(null, contextTest));
     }
 
     @Test
     public void inCommandSubNotEnoughArgs(){
-        CommandFactory factory = CommandFactory.getInstance();
-        CalculatorContext contextTest = new CalculatorContext();
+        final CommandFactory factory = new CommandFactory();
+        final CalculatorContext contextTest = new CalculatorContext();
 
-        Command commandSub = factory.findNameCommand("-");
-        contextTest.getStackNumbers().add(101.0);
+        final Command commandSub = factory.findNameCommand("-");
+        contextTest.getStack().add(101.0);
 
         assertThrows(CalculatorException.class, () -> commandSub.calculate(null, contextTest));
     }

@@ -8,8 +8,8 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD )
-public @interface StackSize {
+public @interface CommandRequirements {
 
-    int valueStackSize();
+    int desiredStackSize();
 
 }

@@ -2,14 +2,15 @@ package calculator;
 
 import java.io.*;
 import java.util.Scanner;
-import static constants.Constant.*;
 
 public final class CommandFileReader  {
+    private static final int COMMAND_INDEX = 0;
+
 
     public void executeFile(final String inFileName) throws FileNotFoundException, CalculatorException {
         final CalculatorContext calculatorContext = new CalculatorContext();
         if (inFileName != null) {
-            final CommandFactory factory = CommandFactory.getInstance();
+            final CommandFactory factory = new CommandFactory();
             try(final Scanner scanner = new Scanner(new File(inFileName))) {
                 while (scanner.hasNextLine()) {
                     final String stringScanner = scanner.nextLine();
