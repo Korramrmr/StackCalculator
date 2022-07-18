@@ -1,8 +1,6 @@
 package main;
 
-import calculator.CalculatorException;
-import calculator.CommandFileReader;
-import calculator.CommandConsoleParser;
+import calculator.*;
 
 import java.io.FileNotFoundException;
 
@@ -17,14 +15,14 @@ public final class Main {
 
         if (args.length > MAX_INPUT_ARGS_INDEX) {
             throw new CalculatorException("Неверное число аргументов. Файл для чтения должен быть один");
-        }
-        else if (args.length == MAX_INPUT_ARGS_INDEX) {
-            final CommandFileReader commandFileReader = new CommandFileReader();
-            commandFileReader.executeFile(args[FILE_NAME_ARG_INDEX]);
-        }
-        else {
-            final CommandConsoleParser commandConsoleParser = new CommandConsoleParser();
-            commandConsoleParser.readConsole();
+        } else if (args.length == MAX_INPUT_ARGS_INDEX) {
+            final FileIo fileIo = new FileIo(args[FILE_NAME_ARG_INDEX]);
+            final CommandReader readerFromFile = new CommandReader();
+            readerFromFile.parseCommand(fileIo);
+        } else {
+            final ConsoleIo consoleIo = new ConsoleIo();
+            final CommandReader readerFromConsole = new CommandReader();
+            readerFromConsole.parseCommand(consoleIo);
         }
 
     }

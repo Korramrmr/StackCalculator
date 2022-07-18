@@ -8,18 +8,18 @@ class CommandFactoryTest {
 
     @Test
     public void commandFactoryWorkCorrect() throws CalculatorException {
-        String[] testArrayCommandPush = {"PUSH", "100"};
-        CalculatorContext calculatorContext = new CalculatorContext();
-        CommandFactory factory = new CommandFactory();
+        final String[] testArrayCommandPush = {"PUSH", "100"};
+        final CalculatorContext context = new CalculatorContext();
+        final CommandFactory factory = new CommandFactory();
 
-        factory.findNameCommand(testArrayCommandPush[0]).calculate(testArrayCommandPush,calculatorContext);
+        factory.findNameCommand(testArrayCommandPush[0]).calculate(testArrayCommandPush,context);
 
-        Assertions.assertEquals(Double.valueOf(testArrayCommandPush[1]), calculatorContext.getStack().getLast());
+        Assertions.assertEquals(Double.valueOf(testArrayCommandPush[1]), context.getStack().getLast());
 
-        String[] testArrayCommandSQRT = {"SQRT"};
-        factory.findNameCommand(testArrayCommandSQRT[0]).calculate(testArrayCommandSQRT, calculatorContext);
+        final String[] testArrayCommandSQRT = {"SQRT"};
+        factory.findNameCommand(testArrayCommandSQRT[0]).calculate(testArrayCommandSQRT, context);
 
-        Assertions.assertEquals(Double.valueOf(10), calculatorContext.getStack().getLast());
+        Assertions.assertEquals(Double.valueOf(10), context.getStack().getLast());
 
     }
 

@@ -16,22 +16,22 @@ public final class CommandFactory {
 
     private final Map<String, Command> commandHashMap = new HashMap<>();
 
-    public CommandFactory()  {
+    public CommandFactory() {
 
-        try(final InputStream input = Main.class.getResourceAsStream(COMMAND_PATH)){
+        try (final InputStream input = Main.class.getResourceAsStream(COMMAND_PATH)) {
             final Properties commandProperties = new Properties();
             commandProperties.load(input);
 
-            for (String nameCommand: commandProperties.stringPropertyNames()){
+            for (String nameCommand : commandProperties.stringPropertyNames()) {
                 final String commandClassName = commandProperties.getProperty(nameCommand);
                 final Class<?> commandClass = Class.forName(commandClassName);
                 var executeCommand = (Command) Class.forName(commandClassName).getDeclaredConstructor().newInstance();
-                CommandRequirements stackSize =  commandClass.getMethod("calculate", String[].class, CalculatorContext.class).getAnnotation(CommandRequirements.class);
+                CommandRequirements stackSize = commandClass.getMethod("calculate", String[].class, CalculatorContext.class).getAnnotation(CommandRequirements.class);
 
 
                 final Command command = (args, calculatorContext) -> {
-                    if (stackSize != null && stackSize.desiredStackSize() > calculatorContext.getStack().size()){
-                     throw new CalculatorException("Данная команда ожидает количество элементов: " + stackSize.desiredStackSize());
+                    if (stackSize != null && stackSize.desiredStackSize() > calculatorContext.getStack().size()) {
+                        throw new CalculatorException("Данная команда ожидает количество элементов: " + stackSize.desiredStackSize());
                     }
                     executeCommand.calculate(args, calculatorContext);
                 };
