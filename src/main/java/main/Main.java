@@ -9,21 +9,22 @@ public final class Main {
     private static final int FILE_NAME_ARG_INDEX = 0;
 
     private Main() {
+        throw new UnsupportedOperationException("не вызывать через рефлексию");
     }
 
     public static void main(final String[] args) throws CalculatorException, FileNotFoundException {
 
         if (args.length > MAX_INPUT_ARGS_INDEX) {
             throw new CalculatorException("Неверное число аргументов. Файл для чтения должен быть один");
-        } else if (args.length == MAX_INPUT_ARGS_INDEX) {
-            final FileIo fileIo = new FileIo(args[FILE_NAME_ARG_INDEX]);
-            final CommandReader readerFromFile = new CommandReader();
-            readerFromFile.parseCommand(fileIo);
-        } else {
-            final ConsoleIo consoleIo = new ConsoleIo();
-            final CommandReader readerFromConsole = new CommandReader();
-            readerFromConsole.parseCommand(consoleIo);
         }
+
+        Io io = args.length == MAX_INPUT_ARGS_INDEX
+                ? new FileIo(args[FILE_NAME_ARG_INDEX])
+                : new ConsoleIo();
+
+        final CommandReader reader = new CommandReader();
+        reader.parseCommand(io);
+
 
     }
 }

@@ -12,12 +12,12 @@ import java.util.Scanner;
 
 class CommandReaderTest {
 
-    public static final class mockStreamTest implements Io {
+    public static final class MockStreamTest implements Io {
 
         private final Reader stream;
 
 
-        public mockStreamTest() {
+        public MockStreamTest() {
             this.stream = new StringReader("PwSH 100");
         }
 
@@ -45,8 +45,7 @@ class CommandReaderTest {
     @Test
     public void readCommandCorrectCommandIsEmpty() throws CalculatorException, FileNotFoundException {
         final CalculatorContext context = new CalculatorContext();
-        final CommandFactory factory = new CommandFactory();
-        final mockStreamTest mockStreamTest = new mockStreamTest();
+        final MockStreamTest mockStreamTest = new MockStreamTest();
         final CommandReader commandReader = new CommandReader();
         commandReader.parseCommand(mockStreamTest);
 
